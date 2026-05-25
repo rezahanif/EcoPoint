@@ -21,16 +21,17 @@ jobs:
 
       - name: Create and start virtual environment and install dependencies
         run: |
+          cd ai                          # 👈 go into ai/ first
           python -m venv antenv
           source antenv/bin/activate
-          pip install -r ai/requirements.txt   # 👈 fixed path
+          pip install -r requirements.txt
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
           path: |
-            ai/        # 👈 only deploy the ai/ folder
+            ai/
             !antenv/
 
   deploy:
